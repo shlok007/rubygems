@@ -45,6 +45,7 @@ class Gem::Source
   def api_uri # :nodoc:
     require 'rubygems/remote_fetcher'
     @api_uri ||= Gem::RemoteFetcher.fetcher.api_endpoint uri
+    @api_uri = URI.parse(@api_uri.to_s << "/") unless @api_uri.to_s[-1] == "/"
   end
 
   ##
